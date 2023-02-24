@@ -11,9 +11,9 @@ import (
 )
 
 func main() {
-	url := "https://lay.rip/snep"
-	os.Setenv("HTTP_PROXY", "http://brd-customer-hl_8e3cfc05-zone-zone1:20b7sqdpne8i@zproxy.lum-superproxy.io:22225")
-	os.Setenv("HTTPS_PROXY", "http://brd-customer-hl_8e3cfc05-zone-zone1:20b7sqdpne8i@zproxy.lum-superproxy.io:22225")
+	url := "https://"
+	os.Setenv("HTTP_PROXY", "http://")
+	os.Setenv("HTTPS_PROXY", "http://")
 	var wg sync.WaitGroup
 	semaphore := make(chan struct{}, 500)
 	for i := 0; i < 1000000; i++ {
@@ -46,15 +46,7 @@ func main() {
 				return
 			}
 			defer resp.Body.Close()
-			
-			//body, err := ioutil.ReadAll(resp.Body)
-			//if err != nil {
-			//	fmt.Println(err)
-			//	<-semaphore
-			//	return
-			//}
 
-			// fmt.Println(string(body))
 			fmt.Println("URL:", resp.Request.URL)
 			fmt.Println("Status code:", resp.StatusCode)
 			<-semaphore
